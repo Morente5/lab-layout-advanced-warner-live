@@ -7,10 +7,142 @@ html {
   box-sizing: inherit;
 }
 
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1280px;
+
 body {
   margin: 0;
   background-color: #141414;
   color: white;
+  font-size: 14px;
   font-weight: 300;
   font-family: 'Jost', sans-serif;
+  overflow-x: hidden;
+}
+
+img {
+  vertical-align: middle;
+}
+
+header {
+  padding: .5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // Sticky header only when >md
+  @media screen and (min-width: $md) {
+    position: sticky;
+    top: 0;
+    background-color: rgba(#141414, .8);
+  }
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  img {
+    height: 4rem;
+    margin-right: 1rem;
+  }
+}
+
+.platform-title {
+  display: none;
+  // Title only visible when >xl
+  @media screen and (min-width: $xl) {
+    display: block;
+  }
+}
+
+.header-buttons {
+  display: flex;
+  a {
+    cursor: pointer;
+    padding: .5rem .75rem;
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+    &:not(:first-of-type) {
+      margin-left: .5rem;
+    }
+  }
+}
+
+main {
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+section {
+  margin-bottom: .5rem;
+}
+
+#top-text {
+  &:after {
+    font-weight: 400;
+    content: '3';
+    // Show 5 results when >xl
+    @media screen and (min-width: $xl) {
+      content: '5';
+    }
+  }
+}
+
+.top {
+  display: flex;
+  // Default column in reverse order
+  flex-flow: column-reverse;
+  // Row in reverse order when >md
+  @media screen and (min-width: $md) {
+    flex-flow: row-reverse;
+  }
+}
+
+.top-item {
+  &:nth-child(-n+2) {  // Selects first 2 elementos
+    // Hide first 2 elements
+    display: none;
+    // Show first 2 elements when >xl
+    @media screen and (min-width: $xl) {
+      display: block;
+    }
+  }
+  cursor: pointer;
+  flex: 1;
+  img {
+    min-width: 225px;
+    width: 100%;
+  }
+}
+
+.first, .second {
+  display: flex;
+  justify-content: stretch;
+  flex-wrap: wrap;
+  gap: 4px;
+  @media screen and (min-width: $xl) {
+    flex-wrap: nowrap;
+  }
+}
+.item {
+  transition: .2s ease;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, .75) 0px 3px 10px;
+    transform: scale(1.3);
+    z-index: 1;
+  }
+  cursor: pointer;
+  flex: 1;
+  img {
+    border-radius: 6px;
+    min-width: 250px;
+    @media screen and (min-width: $xl) {
+      min-width: auto;
+    }
+    width: 100%;
+  }
 }
